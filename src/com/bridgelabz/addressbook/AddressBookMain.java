@@ -1,49 +1,57 @@
 package com.bridgelabz.addressbook;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class AddressBookMain {
 	static final Scanner input = new Scanner(System.in);
+	static ArrayList<ContactDetails> addressbook = new ArrayList<ContactDetails>();
 
-	public static void main(String[] args) {
-		List<String> person = new ArrayList<String>();
-		
-		System.out.println("Welcome to the Address Book Program!");
+	public void addNewContact() {
+		ContactDetails person = new ContactDetails();
 
 		System.out.print("Enter First name: ");
-		String fname = input.nextLine();
+		person.setFname(input.nextLine());
 
 		System.out.print("Enter Last name: ");
-		String lname = input.nextLine();
+		person.setLname(input.nextLine());
 
-		System.out.print("Enter First Address: ");
-		String address = input.nextLine();
+		System.out.print("Enter Address: ");
+		person.setAddress(input.nextLine());
 
 		System.out.print("Enter City: ");
-		String city = input.nextLine();
+		person.setCity(input.nextLine());
 
 		System.out.print("Enter State: ");
-		String state = input.nextLine();
+		person.setState(input.nextLine());
 
 		System.out.print("Enter Zip Code: ");
-		String zip = input.nextLine();
+		person.setZip(input.nextLine());
 
-		System.out.println("Enter Phone number: ");
-		String phone = input.nextLine();
+		System.out.print("Enter Phone number: ");
+		person.setPhone(input.nextLine());
 
-		person.add(fname);
-		person.add(lname);
-		person.add(address);
-		person.add(city);
-		person.add(state);
-		person.add(zip);
-		person.add(phone);
+		System.out.print("Enter Email id: ");
+		person.setEmail(input.nextLine());
 
-		for (String str : person) {
-			System.out.println(str);
+		addressbook.add(person);
+		System.out.println("Contact added successfully.");
+	}
+
+	public void displayAddressBook() {
+		System.out.println("\n**Contact Details**");
+		for (int i = 0; i < addressbook.size(); i++) {
+			ContactDetails person = addressbook.get(i);
+			System.out.println("\nFirst Name: " + person.getFname() + "\n" + "Last Name: " + person.getLname() + "\n"
+                    + "Address: " + person.getAddress() + "\n" + "City: " + person.getCity() + "\n" + "State: "
+                    + person.getState() +"\n" + "Zip Code: "+ person.getZip()+"\n"+ "Phone Number: " + person.getPhone() + "\n" + "Email id: "+person.getEmail());
 		}
+	}
 
+	public static void main(String[] args) {
+		System.out.println("Welcome to the Address Book Program!");
+		AddressBookMain m = new AddressBookMain();
+		m.addNewContact();
+		m.displayAddressBook();
 	}
 }
