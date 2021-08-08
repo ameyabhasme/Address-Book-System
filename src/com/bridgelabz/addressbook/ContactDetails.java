@@ -1,14 +1,13 @@
 package com.bridgelabz.addressbook;
 
 public class ContactDetails {
-	private String fname;
-	private String lname;
-	private String address;
-	private String city;
-	private String state;
-	private String zip;
-	private String phone;
-	private String email;
+	private String fname, lname, address, city, state, zip, phone, email;
+
+	@Override
+	public String toString() {
+		return "ContactDetails [fname= " + fname + ", lname= " + lname + ", address= " + address + ", city= " + city
+				+ ", state= " + state + ", zip= " + zip + ", phone= " + phone + ", email= " + email + "]";
+	}
 
 	public String getFname() {
 		return fname;
