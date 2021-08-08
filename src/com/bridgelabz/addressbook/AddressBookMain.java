@@ -1,10 +1,7 @@
 package com.bridgelabz.addressbook;
 
-import java.util.Scanner;
-
 public class AddressBookMain {
 	static ContactInterface c = new Operations();
-	static final Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Address Book Program!");
@@ -13,12 +10,19 @@ public class AddressBookMain {
 			System.out.println("\n" + "1.Add Contact" + "\n" + "2.Display Contacts" + "\n" + "3.Edit Contact" + "\n"
 					+ "4.Delete Contact" + "\n" + "10. Exit");
 			System.out.print("Enter option: ");
-			option = sc.nextInt();
+			option = InputUtils.intInput();
 
 			switch (option) {
 			case 1:
-				c.addNewContact();
-				System.out.println("Contact added successfully.");
+				char isContinue = 'n';
+				do {
+					c.addNewContact();
+					System.out.println("Contact added successfully.");
+					System.out.println("Do you want to add anoher contact (y/n): ");
+					isContinue = InputUtils.charInput();
+				}
+
+				while (isContinue == 'y' || isContinue == 'Y');
 				break;
 			case 2:
 				c.displayAddressBook();

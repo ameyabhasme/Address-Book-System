@@ -3,11 +3,6 @@ package com.bridgelabz.addressbook;
 public class ContactDetails {
 	private String fname, lname, address, city, state, zip, phone, email;
 
-	@Override
-	public String toString() {
-		return "ContactDetails [fname= " + fname + ", lname= " + lname + ", address= " + address + ", city= " + city
-				+ ", state= " + state + ", zip= " + zip + ", phone= " + phone + ", email= " + email + "]";
-	}
 
 	public String getFname() {
 		return fname;
@@ -73,5 +68,9 @@ public class ContactDetails {
 		this.email = email;
 	}
 
-
+	@Override
+	public String toString() {
+		return "ContactDetails [fname= " + fname + ", lname= " + lname + ", address= " + address + ", city= " + city
+				+ ", state= " + state + ", zip= " + zip + ", phone= " + phone + ", email= " + email + "]";
+	}
 }
