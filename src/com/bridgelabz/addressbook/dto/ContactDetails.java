@@ -1,8 +1,7 @@
-package com.bridgelabz.addressbook;
+package com.bridgelabz.addressbook.dto;
 
 public class ContactDetails {
-	private String fname, lname, address, city, state, zip, phone, email;
-
+	private String fname, lname, address, city, state, zip, phone, email, addressBookName;
 
 	public String getFname() {
 		return fname;
@@ -34,6 +33,10 @@ public class ContactDetails {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public String getAddressBookName() {
+		return addressBookName;
 	}
 
 	public void setAddress(String address) {
@@ -68,9 +71,14 @@ public class ContactDetails {
 		this.email = email;
 	}
 
+	public void setAddressBookName(String addressBookName) {
+		this.addressBookName = addressBookName;
+	}
+
 	@Override
 	public String toString() {
-		return "ContactDetails [fname= " + fname + ", lname= " + lname + ", address= " + address + ", city= " + city
-				+ ", state= " + state + ", zip= " + zip + ", phone= " + phone + ", email= " + email + "]";
+		return "[first name= " + fname + ", last name= " + lname + ", address= " + address + ", city= " + city
+				+ ", state= " + state + ", zip= " + zip + ", phone= " + phone + ", email= " + email + "]\n";
 	}
+
 }

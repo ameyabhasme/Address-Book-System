@@ -1,7 +1,7 @@
-package com.bridgelabz.addressbook;
+package com.bridgelabz.addressbook.service;
 
 public interface ContactInterface {
-	public void addNewContact();
+	public void addContact();
 
 	public void editContact();
 

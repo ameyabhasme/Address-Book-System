@@ -1,5 +1,9 @@
 package com.bridgelabz.addressbook;
 
+import com.bridgelabz.addressbook.service.ContactInterface;
+import com.bridgelabz.addressbook.service.impl.Operations;
+import com.bridgelabz.addressbook.utils.InputUtils;
+
 public class AddressBookMain {
 	static ContactInterface c = new Operations();
 
@@ -7,8 +11,8 @@ public class AddressBookMain {
 		System.out.println("Welcome to the Address Book Program!");
 		int option = 0;
 		while (option != 10) {
-			System.out.println("\n" + "1.Add Contact" + "\n" + "2.Display Contacts" + "\n" + "3.Edit Contact" + "\n"
-					+ "4.Delete Contact" + "\n" + "10. Exit");
+			System.out.println("\n" + "1. Add Contact" + "\n" + "2. Edit Contact" + "\n" + "3. Delete Contact" + "\n"
+					+ "4. Display Contact" + "\n" + "10. Exit");
 			System.out.print("Enter option: ");
 			option = InputUtils.intInput();
 
@@ -16,7 +20,7 @@ public class AddressBookMain {
 			case 1:
 				char isContinue = 'n';
 				do {
-					c.addNewContact();
+					c.addContact();
 					System.out.println("Contact added successfully.");
 					System.out.println("Do you want to add anoher contact (y/n): ");
 					isContinue = InputUtils.charInput();
@@ -25,13 +29,13 @@ public class AddressBookMain {
 				while (isContinue == 'y' || isContinue == 'Y');
 				break;
 			case 2:
-				c.displayAddressBook();
-				break;
-			case 3:
 				c.editContact();
 				break;
-			case 4:
+			case 3:
 				c.deleteContact();
+				break;
+			case 4:
+				c.displayAddressBook();
 				break;
 			case 10:
 				break;
