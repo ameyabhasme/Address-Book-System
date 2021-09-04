@@ -21,18 +21,19 @@ public class AddressBookMain {
 				char isContinue = 'n';
 				do {
 					c.addContact();
+//					c.defaultEntry();
 					System.out.println("Contact added successfully.");
 					System.out.println("Do you want to add anoher contact (y/n): ");
 					isContinue = InputUtils.charInput();
-				}
-
-				while (isContinue == 'y' || isContinue == 'Y');
+				} while (isContinue == 'y' || isContinue == 'Y');
 				break;
 			case 2:
 				c.editContact();
+				System.out.println("Contact saved!");
 				break;
 			case 3:
 				c.deleteContact();
+				System.out.println("Deleted successfully!");
 				break;
 			case 4:
 				c.displayAddressBook();

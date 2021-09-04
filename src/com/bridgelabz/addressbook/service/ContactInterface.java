@@ -8,4 +8,6 @@ public interface ContactInterface {
 	public void deleteContact();
 
 	public void displayAddressBook();
+	
+	public void defaultEntry();
 }

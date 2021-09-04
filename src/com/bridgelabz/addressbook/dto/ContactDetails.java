@@ -1,5 +1,7 @@
 package com.bridgelabz.addressbook.dto;
 
+import java.util.Objects;
+
 public class ContactDetails {
 	private String fname, lname, address, city, state, zip, phone, email, addressBookName;
 
@@ -77,8 +79,24 @@ public class ContactDetails {
 
 	@Override
 	public String toString() {
-		return "[first name= " + fname + ", last name= " + lname + ", address= " + address + ", city= " + city
-				+ ", state= " + state + ", zip= " + zip + ", phone= " + phone + ", email= " + email + "]\n";
+		return "[First name= " + fname + ", Last name= " + lname + ", Address= " + address + ", City= " + city
+				+ ", State= " + state + ", Zip= " + zip + ", Phone= " + phone + ", Email= " + email + "]" + "\n";
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(fname);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ContactDetails other = (ContactDetails) obj;
+		return Objects.equals(fname, other.fname);
+	}
 }
