@@ -5,6 +5,7 @@ import com.bridgelabz.addressbook.service.impl.Operations;
 import com.bridgelabz.addressbook.utils.InputUtils;
 
 public class AddressBookMain {
+
 	static ContactInterface c = new Operations();
 
 	public static void main(String[] args) {
@@ -12,20 +13,15 @@ public class AddressBookMain {
 		int option = 0;
 		while (option != 10) {
 			System.out.println("\n" + "1. Add Contact" + "\n" + "2. Edit Contact" + "\n" + "3. Delete Contact" + "\n"
-					+ "4. Display Contact" + "\n" + "10. Exit");
+					+ "4. Display Contact" + "\n" + "5. Search" + "\n" + "10. Exit");
 			System.out.print("Enter option: ");
 			option = InputUtils.intInput();
 
 			switch (option) {
 			case 1:
-				char isContinue = 'n';
-				do {
-					c.addContact();
-//					c.defaultEntry();
+//					c.addContact();
+					c.defaultEntry();
 					System.out.println("Contact added successfully.");
-					System.out.println("Do you want to add anoher contact (y/n): ");
-					isContinue = InputUtils.charInput();
-				} while (isContinue == 'y' || isContinue == 'Y');
 				break;
 			case 2:
 				c.editContact();
@@ -38,6 +34,9 @@ public class AddressBookMain {
 			case 4:
 				c.displayAddressBook();
 				break;
+			case 5:
+				c.searchByCityOrState();
+				break;
 			case 10:
 				break;
 			default:
@@ -46,3 +45,4 @@ public class AddressBookMain {
 		}
 	}
 }
+

@@ -10,4 +10,6 @@ public interface ContactInterface {
 	public void displayAddressBook();
 	
 	public void defaultEntry();
+	
+	public void searchByCityOrState();
 }
