@@ -16,4 +16,8 @@ public class InputUtils {
 	public static String strInput() {
 		return input.next();
 	}
+	
+	public static String strLineInput() {
+		return input.nextLine();
+	}
 }
