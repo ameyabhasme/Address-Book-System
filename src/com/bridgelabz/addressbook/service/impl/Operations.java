@@ -130,50 +130,42 @@ public class Operations implements ContactInterface {
 	}
 
 	public void printCityNames() {
-		List<String> result = new ArrayList<>();
-		for (HashMap.Entry item : contactListMap.entrySet()) {
-			result = contactListMap.entrySet().stream().collect(Collectors.toList()).stream()
-					.flatMap(data -> data.getValue().stream()).map(ContactDetails::getCity)
-					.collect(Collectors.toList());
+		Set<String> result = contactListMap.entrySet().stream()
+									.flatMap(data -> data.getValue()
+									.stream().map(ContactDetails :: getCity))
+									.collect(Collectors.toSet());
 
-			result.stream().distinct().forEach(System.out::println);
+		System.out.println();
+		for (String city : result) {
+			System.out.println(city);
 		}
-		System.out.println("\nEnter the City From List:");
-		String searchCity = InputUtils.strInput();
+		System.out.println("\nEnter City From List:");
+		String searchCity= InputUtils.strInput();
 		if (result.contains(searchCity)) {
-			for (HashMap.Entry m : contactListMap.entrySet()) {
-				addressBook = contactListMap.get(m.getKey());
-				for (ContactDetails contactDetails : addressBook) {
-					if (contactDetails.getCity().equals(searchCity)) {
-						System.out.println(contactDetails.toString());
-					}
-				}
-			}
+			contactListMap.entrySet().stream().flatMap(data -> data.getValue()
+					.stream()).filter(data -> data.getCity().equals(searchCity))
+					.forEach(System.out :: println);
 		} else {
 			System.out.println("Sorry, this city is not available.");
 		}
 	}
 
 	public void printStateNames() {
-		List<String> result = new ArrayList<>();
-		for (HashMap.Entry item : contactListMap.entrySet()) {
-			result = contactListMap.entrySet().stream().collect(Collectors.toList()).stream()
-					.flatMap(data -> data.getValue().stream()).map(ContactDetails::getState)
-					.collect(Collectors.toList());
+		Set<String> result = contactListMap.entrySet().stream()
+									.flatMap(data -> data.getValue()
+									.stream().map(ContactDetails :: getState))
+									.collect(Collectors.toSet());
 
-			result.stream().distinct().forEach(System.out::println);
+		System.out.println();
+		for (String state : result) {
+			System.out.println(state);
 		}
-		System.out.println("\nEnter the State From List:");
-		String searchState = InputUtils.strInput();
+		System.out.println("\nEnter State From List:");
+		String searchState= InputUtils.strInput();
 		if (result.contains(searchState)) {
-			for (HashMap.Entry m : contactListMap.entrySet()) {
-				addressBook = contactListMap.get(m.getKey());
-				for (ContactDetails contactDetails : addressBook) {
-					if (contactDetails.getState().equals(searchState)) {
-						System.out.println(contactDetails.toString());
-					}
-				}
-			}
+			contactListMap.entrySet().stream().flatMap(data -> data.getValue()
+					.stream()).filter(data -> data.getState().equals(searchState))
+			.forEach(System.out :: println);
 		} else {
 			System.out.println("Sorry, this state is not available.");
 		}
