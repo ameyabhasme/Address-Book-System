@@ -19,8 +19,8 @@ public class AddressBookMain {
 
 			switch (option) {
 			case 1:
-//					c.addContact();
-					c.defaultEntry();
+					c.addContact();
+//					c.defaultEntry();
 					System.out.println("Contact added successfully.");
 				break;
 			case 2:
