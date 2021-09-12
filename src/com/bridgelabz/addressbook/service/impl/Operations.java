@@ -1,9 +1,8 @@
 package com.bridgelabz.addressbook.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,7 +13,9 @@ import com.bridgelabz.addressbook.utils.InputUtils;
 public class Operations implements ContactInterface {
 
 	private static Set<ContactDetails> addressBook;
-	private HashMap<String, Set<ContactDetails>> contactListMap = new HashMap<>();
+	public Map<String, Set<ContactDetails>> contactListMap = new HashMap<>();
+	public Map<String, Set<ContactDetails>> cityMap = new HashMap<>();
+	public Map<String, Set<ContactDetails>> stateMap = new HashMap<>();
 	ContactDetails contactDetails;
 
 	@Override
@@ -43,6 +44,8 @@ public class Operations implements ContactInterface {
 			contactDetails = userDetailsEntry(contactDetails);
 			enterDetails(contactDetails);
 		}
+		personByCity();
+		personByState();
 	}
 
 	@Override
@@ -101,14 +104,12 @@ public class Operations implements ContactInterface {
 	}
 
 	@Override
-	public void displayAddressBook() {
+	public void display() {
 		System.out.println("\n**Contact Details**\n");
 
-		for (HashMap.Entry item : contactListMap.entrySet()) {
-			System.out.println("|" + item.getKey() + "|");
-			System.out.println(item.getValue());
-			System.out.println();
-		}
+		contactListMap.entrySet().stream()
+		.forEach(item -> {System.out.println(item.getKey() + "\n" + item.getValue());
+						System.out.println();});
 	}
 
 	@Override
@@ -150,6 +151,7 @@ public class Operations implements ContactInterface {
 		}
 	}
 
+	
 	public void printStateNames() {
 		Set<String> result = contactListMap.entrySet().stream()
 									.flatMap(data -> data.getValue()
@@ -164,11 +166,64 @@ public class Operations implements ContactInterface {
 		String searchState= InputUtils.strInput();
 		if (result.contains(searchState)) {
 			contactListMap.entrySet().stream().flatMap(data -> data.getValue()
-					.stream()).filter(data -> data.getState().equals(searchState))
-			.forEach(System.out :: println);
+						.stream()).filter(data -> data.getState().equals(searchState))
+						.forEach(System.out :: println);
 		} else {
 			System.out.println("Sorry, this state is not available.");
 		}
+	}
+
+	public Set<ContactDetails> storeInMap(String searchCityState, ContactDetails userContactDetails, Map<String, Set<ContactDetails>> map) {
+		addressBook = new HashSet<ContactDetails>();
+		if (map.get(searchCityState) == null) {
+			addressBook.add(userContactDetails);
+		} else {
+			addressBook = map.get(searchCityState);
+			addressBook.add(userContactDetails);
+		}
+		return addressBook;
+	}
+	
+	public void personByCity() {
+		for (HashMap.Entry item : contactListMap.entrySet()) {
+			addressBook = contactListMap.get(item.getKey());
+			for (ContactDetails contactDetails : addressBook) {
+				addressBook = storeInMap(contactDetails.getCity(),contactDetails,cityMap);
+				cityMap.put(contactDetails.getCity(), addressBook);
+			}
+		}
+	}
+
+	@Override
+	public void viewPersonByCity() {
+		personByCity();
+		System.out.println("City By Person");
+		cityMap.entrySet()
+		.stream().forEach(m -> {
+			System.out.print(m.getKey()+" : ");  
+			m.getValue().forEach(System.out::println);
+			System.out.println();});
+	}
+
+	public void personByState() {
+		for (HashMap.Entry m : contactListMap.entrySet()) {
+			addressBook = contactListMap.get(m.getKey());
+			for (ContactDetails contactDetails : addressBook) {
+				addressBook = storeInMap(contactDetails.getState(),contactDetails,stateMap);
+				stateMap.put(contactDetails.getState(), addressBook);
+			}
+		}
+	}
+	
+	@Override
+	public void viewPersonByState() {
+		personByState();
+		System.out.println("State By Person");
+		stateMap.entrySet()
+		.stream().forEach(m -> {
+			System.out.print(m.getKey()+" : ");  
+			m.getValue().forEach(System.out::println);
+			System.out.println();});	
 	}
 
 	public void enterDetails(ContactDetails contactDetails) {
@@ -187,17 +242,6 @@ public class Operations implements ContactInterface {
 
 	public String printAddressBookName() {
 		System.out.println("Address Book Name List");
-		for (HashMap.Entry item : contactListMap.entrySet()) {
-			System.out.println(item.getKey());
-		}
-		System.out.println();
-		System.out.println("Enter Address Book Name");
-		String addressBookName = InputUtils.strInput();
-		return addressBookName;
-	}
-
-	public String printCityName() {
-		System.out.println("City Name List");
 		for (HashMap.Entry item : contactListMap.entrySet()) {
 			System.out.println(item.getKey());
 		}
