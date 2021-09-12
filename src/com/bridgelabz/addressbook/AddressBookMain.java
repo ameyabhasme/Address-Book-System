@@ -13,7 +13,8 @@ public class AddressBookMain {
 		int option = 0;
 		while (option != 10) {
 			System.out.println("\n" + "1. Add Contact" + "\n" + "2. Edit Contact" + "\n" + "3. Delete Contact" + "\n"
-					+ "4. Display Contact" + "\n" + "5. Search" + "\n" + "10. Exit");
+					+ "4. Display Contact" + "\n" + "5. Search" + "\n" + "6. View Person by State" + "\n"
+					+ "7. View Person by City" + "\n" + "8. Contact Count" + "\n" + "10. Exit");
 			System.out.print("Enter option: ");
 			option = InputUtils.intInput();
 
@@ -32,10 +33,18 @@ public class AddressBookMain {
 				System.out.println("Deleted successfully!");
 				break;
 			case 4:
-				c.displayAddressBook();
+				c.display();
 				break;
 			case 5:
 				c.searchByCityOrState();
+				break;
+			case 6:
+				c.viewPersonByState();
+				break;
+			case 7:
+				c.viewPersonByCity();
+				break;
+			case 8:
 				break;
 			case 10:
 				break;

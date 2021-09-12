@@ -7,9 +7,13 @@ public interface ContactInterface {
 
 	public void deleteContact();
 
-	public void displayAddressBook();
+	public void display();
 	
 	public void defaultEntry();
 	
 	public void searchByCityOrState();
+	
+	public void viewPersonByCity();
+	
+	public void viewPersonByState();
 }
