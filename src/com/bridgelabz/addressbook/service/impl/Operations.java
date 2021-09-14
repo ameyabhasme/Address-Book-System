@@ -241,7 +241,8 @@ public class Operations implements ContactInterface {
 	
 	@Override
 	public void sortBy() {
-		System.out.println("\n" + "1. Sort By Name" + "\n" + "Enter option:");
+		System.out.println("\n" + "1. Sort By Name" + "\n" + "2. Sort By City" + "\n"
+					+ "3. Sort By State" + "\n" + "4. Sort By Zip Code" + "\n" + "Enter option:");
 		int option = InputUtils.intInput();
 		
 		System.out.println("\nList of Address book Name");
@@ -253,6 +254,15 @@ public class Operations implements ContactInterface {
 		case 1:
 			sortByName(addressBookName);
 			break;
+		case 2:
+			sortByCity(addressBookName);
+			break;
+		case 3:
+			sortByState(addressBookName);
+			break;
+		case 4:
+			sortByZip(addressBookName);
+			break;
 		default:
 			System.out.println("Invalid option.");
 			break;
@@ -263,6 +273,27 @@ public class Operations implements ContactInterface {
 		addressBook = contactListMap.get(addressBookName);
 		System.out.println("\nAddress book Sort By Name");
 		addressBook.stream().sorted(Comparator.comparing(ContactDetails :: getFname))
+		.forEach(System.out :: println);
+	}
+
+	public void sortByCity(String addressBookName) {
+		addressBook = contactListMap.get(addressBookName);
+		System.out.println("\nAddress book Sort By City");
+		addressBook.stream().sorted(Comparator.comparing(ContactDetails :: getCity))
+		.forEach(System.out :: println);
+	}
+
+	public void sortByState(String addressBookName) {
+		addressBook = contactListMap.get(addressBookName);
+		System.out.println("\nAddress book Sort By State");
+		addressBook.stream().sorted(Comparator.comparing(ContactDetails :: getState))
+		.forEach(System.out :: println);
+	}
+
+	public void sortByZip(String addressBookName) {
+		addressBook = contactListMap.get(addressBookName);
+		System.out.println("\nAddress book Sort By Zip Code");
+		addressBook.stream().sorted(Comparator.comparing(ContactDetails :: getZip))
 		.forEach(System.out :: println);
 	}
 
