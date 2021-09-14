@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook.service.impl;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -69,11 +70,14 @@ public class Operations implements ContactInterface {
 				System.out.println("Second Name is '" + user.getLname() + "' Edit");
 				user.setLname(InputUtils.strInput());
 				System.out.println("Address is '" + user.getAddress() + "' Edit");
+				InputUtils.strLineInput();
 				user.setAddress(InputUtils.strLineInput());
 				System.out.println("City Name is '" + user.getCity() + "' Edit");
-				user.setCity(InputUtils.strInput());
+				InputUtils.strLineInput();
+				user.setCity(InputUtils.strLineInput());
 				System.out.println("State Name is '" + user.getState() + "' Edit");
-				user.setState(InputUtils.strInput());
+				InputUtils.strLineInput();
+				user.setState(InputUtils.strLineInput());
 				System.out.println("Email is '" + user.getEmail() + "' Edit");
 				user.setEmail(InputUtils.strInput());
 				System.out.println("Zip Code is '" + user.getZip() + "' Edit");
@@ -140,7 +144,7 @@ public class Operations implements ContactInterface {
 			System.out.println(city);
 		}
 		System.out.println("\nEnter City From List:");
-		String searchCity = InputUtils.strInput();
+		String searchCity = InputUtils.strLineInput();
 		if (result.contains(searchCity)) {
 			contactListMap.entrySet().stream().flatMap(data -> data.getValue().stream())
 					.filter(data -> data.getCity().equals(searchCity)).forEach(System.out::println);
@@ -158,7 +162,7 @@ public class Operations implements ContactInterface {
 			System.out.println(state);
 		}
 		System.out.println("\nEnter State From List:");
-		String searchState = InputUtils.strInput();
+		String searchState = InputUtils.strLineInput();
 		if (result.contains(searchState)) {
 			contactListMap.entrySet().stream().flatMap(data -> data.getValue().stream())
 					.filter(data -> data.getState().equals(searchState)).forEach(System.out::println);
@@ -194,9 +198,8 @@ public class Operations implements ContactInterface {
 		personByCity();
 		System.out.println("Person by City");
 		cityMap.entrySet().stream().forEach(m -> {
-			System.out.print(m.getKey() + " : ");
+			System.out.print(m.getKey() + "\n");
 			m.getValue().forEach(System.out::println);
-			System.out.println();
 		});
 	}
 
@@ -215,9 +218,8 @@ public class Operations implements ContactInterface {
 		personByState();
 		System.out.println("Person by State");
 		stateMap.entrySet().stream().forEach(m -> {
-			System.out.print(m.getKey() + " : ");
+			System.out.print(m.getKey() + "\n");
 			m.getValue().forEach(System.out::println);
-			System.out.println();
 		});
 	}
 	
@@ -225,16 +227,43 @@ public class Operations implements ContactInterface {
 	public void viewCount() {
 		personByCity();
 		personByState();
-		System.out.println("Person by City Count");
+		System.out.println("\nPerson by City Count");
 		for (HashMap.Entry item : cityMap.entrySet()) {
 			addressBook = cityMap.get(item.getKey());
 			System.out.println(item.getKey() + " : " + addressBook.size());
 		}
-		System.out.println("Person by State Count");
+		System.out.println("\nPerson by State Count");
 		for (HashMap.Entry item : stateMap.entrySet()) {
 			addressBook = stateMap.get(item.getKey());
 			System.out.println(item.getKey() + " : " + addressBook.size());
 		}
+	}
+	
+	@Override
+	public void sortBy() {
+		System.out.println("\n" + "1. Sort By Name" + "\n" + "Enter option:");
+		int option = InputUtils.intInput();
+		
+		System.out.println("\nList of Address book Name");
+		contactListMap.forEach((k,v)-> System.out.println(k));
+		System.out.println("\nEnter the Address book name");
+		String addressBookName = InputUtils.strInput();
+
+		switch(option) {
+		case 1:
+			sortByName(addressBookName);
+			break;
+		default:
+			System.out.println("Invalid option.");
+			break;
+		}
+	}
+	
+	public void sortByName(String addressBookName) {
+		addressBook = contactListMap.get(addressBookName);
+		System.out.println("\nAddress book Sort By Name");
+		addressBook.stream().sorted(Comparator.comparing(ContactDetails :: getFname))
+		.forEach(System.out :: println);
 	}
 
 	public void enterDetails(ContactDetails contactDetails) {
@@ -271,11 +300,14 @@ public class Operations implements ContactInterface {
 		System.out.println("Enter Last Name");
 		contactDetails.setLname(InputUtils.strInput());
 		System.out.println("Enter Address");
-		contactDetails.setAddress(InputUtils.strInput());
+		InputUtils.strLineInput();
+		contactDetails.setAddress(InputUtils.strLineInput());
 		System.out.println("Enter City Name");
-		contactDetails.setCity(InputUtils.strInput());
+		InputUtils.strLineInput();
+		contactDetails.setCity(InputUtils.strLineInput());
 		System.out.println("Enter State Name");
-		contactDetails.setState(InputUtils.strInput());
+		InputUtils.strLineInput();
+		contactDetails.setState(InputUtils.strLineInput());
 		System.out.println("Enter Email");
 		contactDetails.setEmail(InputUtils.strInput());
 		System.out.println("Enter Zip Code");

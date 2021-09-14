@@ -13,15 +13,15 @@ public class AddressBookMain {
 		int option = 0;
 		while (option != 10) {
 			System.out.println("\n" + "1. Add Contact" + "\n" + "2. Edit Contact" + "\n" + "3. Delete Contact" + "\n"
-					+ "4. Display Contact" + "\n" + "5. Search" + "\n" + "6. View Person by State" + "\n"
-					+ "7. View Person by City" + "\n" + "8. Contact Count" + "\n" + "10. Exit");
+					+ "4. Display Contact" + "\n" + "5. Search" + "\n" + "6. View Person" + "\n"
+					+ "7. Contact Count" + "\n" + "8. Sort" + "\n" + "10. Exit");
 			System.out.print("Enter option: ");
 			option = InputUtils.intInput();
 
 			switch (option) {
 			case 1:
-//					c.addContact();
-					c.defaultEntry();
+//					c.defaultEntry();
+					c.addContact();
 					System.out.println("Contact added successfully.");
 				break;
 			case 2:
@@ -39,13 +39,22 @@ public class AddressBookMain {
 				c.searchByCityOrState();
 				break;
 			case 6:
-				c.viewPersonByState();
+				System.out.println("1. View By State" + "\n" + "2. View By City");
+				int viewOption = InputUtils.intInput();
+				switch(viewOption) {
+				case 1:
+					c.viewPersonByState();
+					break;
+				case 2:
+					c.viewPersonByCity();
+					break;
+				}
 				break;
 			case 7:
-				c.viewPersonByCity();
+				c.viewCount();
 				break;
 			case 8:
-				c.viewCount();
+				c.sortBy();
 				break;
 			case 10:
 				break;

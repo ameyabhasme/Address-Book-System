@@ -18,4 +18,6 @@ public interface ContactInterface {
 	public void viewPersonByState();
 
 	public void viewCount();
+
+	public void sortBy();
 }
