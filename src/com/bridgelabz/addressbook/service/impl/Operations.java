@@ -1,8 +1,16 @@
 package com.bridgelabz.addressbook.service.impl;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,7 +26,8 @@ public class Operations implements ContactInterface {
 	public Map<String, Set<ContactDetails>> cityMap = new HashMap<>();
 	public Map<String, Set<ContactDetails>> stateMap = new HashMap<>();
 	ContactDetails contactDetails;
-
+	final String PATH = "static/contacts.txt";
+	
 	@Override
 	public void addContact() {
 
@@ -297,6 +306,40 @@ public class Operations implements ContactInterface {
 		.forEach(System.out :: println);
 	}
 
+	@Override
+	public void write() {
+		File file = new File(PATH);
+		try{
+			file.createNewFile();
+			FileWriter write = new FileWriter(PATH);
+			BufferedWriter bw = new BufferedWriter(write);
+			for (HashMap.Entry m : contactListMap.entrySet()) {
+				addressBook = contactListMap.get(m.getKey());
+				for (ContactDetails contactDetails : addressBook) {
+					 bw.write(contactDetails.toString());
+					 bw.flush();
+		             bw.newLine();
+				}
+			}
+			System.out.println("Wrote to File");
+			write.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void read() {
+		File file = new File(PATH);
+		List<String> lines;
+		try {
+			lines = Files.readAllLines(Paths.get(PATH),StandardCharsets.UTF_8);
+			lines.forEach(System.out::println);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void enterDetails(ContactDetails contactDetails) {
 		addressBook = new HashSet<ContactDetails>();
 		if (contactListMap.get(contactDetails.getAddressBookName()) == null) {
@@ -349,7 +392,6 @@ public class Operations implements ContactInterface {
 		return contactdetails;
 	}
 
-	@Override
 	public void defaultEntry() {
 		contactDetails = new ContactDetails();
 		contactDetails.setAddressBookName("Family");

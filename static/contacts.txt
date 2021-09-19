@@ -1,0 +1,7 @@
+[First name= Sahil, Last name= Surme, Address= Kharghar, City= Mumbai, State= Maharashtra, Zip= 400052, Phone= 9858489537, Email= sahilsurme@gmail.com]
+
+[First name= Ritvija, Last name= Suham, Address= Itwari, City= Pune, State= Maharashtra, Zip= 440048, Phone= 9589746682, Email= rjsuham@gmail.com]
+
+[First name= Ameya, Last name= Bhasme, Address= Mankapur, City= Pune, State= Maharashtra, Zip= 440030, Phone= 9975401899, Email= ameya@gmail.com]
+
+[First name= Narendra, Last name= Bhasme, Address= Mankapur, City= Indore, State= Maharashtra, Zip= 440030, Phone= 9764444803, Email= nmbhasme@gmail.com]

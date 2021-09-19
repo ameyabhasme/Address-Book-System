@@ -14,14 +14,14 @@ public class AddressBookMain {
 		while (option != 10) {
 			System.out.println("\n" + "1. Add Contact" + "\n" + "2. Edit Contact" + "\n" + "3. Delete Contact" + "\n"
 					+ "4. Display Contact" + "\n" + "5. Search" + "\n" + "6. View Person" + "\n"
-					+ "7. Contact Count" + "\n" + "8. Sort" + "\n" + "10. Exit");
+					+ "7. Contact Count" + "\n" + "8. Sort" + "\n" + "9. IO File Operations" + "\n"+ "10. Exit");
 			System.out.print("Enter option: ");
 			option = InputUtils.intInput();
 
 			switch (option) {
 			case 1:
-//					c.defaultEntry();
-					c.addContact();
+					c.defaultEntry();
+//					c.addContact();
 					System.out.println("Contact added successfully.");
 				break;
 			case 2:
@@ -55,6 +55,18 @@ public class AddressBookMain {
 				break;
 			case 8:
 				c.sortBy();
+				break;
+			case 9:
+				System.out.println("1. Write to File" + "\n" + "2. Read from File");
+				int fileOperation = InputUtils.intInput();
+				switch(fileOperation) {
+				case 1:
+					c.write();
+					break;
+				case 2:
+					c.read();
+					break;
+				}
 				break;
 			case 10:
 				break;

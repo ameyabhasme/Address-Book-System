@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbook.service;
 
 public interface ContactInterface {
+
 	public void addContact();
 
 	public void editContact();
@@ -20,4 +21,8 @@ public interface ContactInterface {
 	public void viewCount();
 
 	public void sortBy();
+
+	public void write();
+
+	public void read();
 }
